@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Management System - Input</title>
+</head>
+
+<body>
+    <h1>Patient Management System: Insert</h1>
+
+    <!-- Simple form to input values for the DB -->
+    <form action="{% url 'add_patient' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter patient's name"
+            value="{{ form.name.value|default_if_none:'' }}" required><br><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" placeholder="Enter patient's age"
+            value="{{ form.age.value|default_if_none:'' }}" required><br><br>
+
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender" required>
+            <option value="">Select gender</option>
+            <option value="Male" {% if form.gender.value == "Male" %}selected{% endif %}>Male</option>
+            <option value="Female" {% if form.gender.value == "Female" %}selected{% endif %}>Female</option>
+            <option value="Other" {% if form.gender.value == "Other" %}selected{% endif %}>Other</option>
+        </select><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter patient's email"
+            value="{{ form.email.value|default_if_none:'' }}" required><br><br>
+
+        <label for="phone_number">Phone Number:</label><br>
+        <input type="tel" id="phone_number" name="phone_number" placeholder="Enter patient's phone number"
+            value="{{ form.phone_number.value|default_if_none:'' }}" required><br><br>
+
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" placeholder="Enter patient's address"
+            required>{{ form.address.value|default_if_none:'' }}</textarea><br><br>
+
+        <label for="medical_history">Medical History:</label><br>
+        <textarea id="medical_history" name="medical_history" placeholder="Enter patient's medical history"
+            required>{{ form.medical_history.value|default_if_none:'' }}</textarea><br><br>
+
+        <button type="submit">Save Patient</button>
+    </form>
+
+</html>
