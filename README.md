@@ -5,9 +5,12 @@ A lightweight Django web application designed for efficient patient record manag
 ## 🚀 Features
 
 ### Current Functionality
+- **User Authentication**: Custom-built authentication system allowing users to:
+    - **Register**: Create new accounts via the `/add_user/` endpoint.
+    - **Login**: Secure access to the patient management system via `/login/`.
 - **Patient Registration**: An intuitive form interface to add new patients to the system.
 - **Robust Data Validation**: Custom server-side validation rules in `forms.py` ensure data integrity:
-    - **Email**: Enforces specific domain usage (e.g., `@example.com`).
+    - **Email**: Enforces specific domain usage (e.g., `@gmail.com`).
     - **Phone**: Validates that only digits are entered.
     - **Age**: Restricts input to a realistic range (0-120).
     - **Name**: Enforces minimum character length.
@@ -17,7 +20,7 @@ A lightweight Django web application designed for efficient patient record manag
 The project is actively being developed into a full CRUD (Create, Read, Update, Delete) application.
 - **Read**: Dashboard to view a list of all registered patients.
 - **Update**: Interface to edit patient details (e.g., address changes, medical history updates).
-- **Delete**: functionality to remove discharged or erroneous records.
+- **Delete**: Functionality to remove discharged or erroneous records.
 - **Search**: Ability to look up patients by ID or name.
 
 ## 🛠️ Tech Stack
@@ -50,6 +53,7 @@ The project is actively being developed into a full CRUD (Create, Read, Update, 
 4. **Navigate to the project and run migrations**
    ```bash
    cd hospital_project
+   python manage.py makemigrations
    python manage.py migrate
    ```
 
@@ -59,7 +63,7 @@ The project is actively being developed into a full CRUD (Create, Read, Update, 
    ```
 
 6. **Access the application**
-   Open your browser and visit: `http://127.0.0.1:8000/add_patient/`
+   Open your browser and visit: `http://127.0.0.1:8000/login/` or `http://127.0.0.1:8000/add_user/`
 
 ---
 *Project under active development.*
