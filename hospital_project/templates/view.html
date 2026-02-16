@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+    </head>
+
+    <>
+        <h1>Dashboard</h1>
+        <h2>Patient List</h2>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Medical History</th>
+            </tr>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.gender }}</td>
+                <td>{{ patient.address }}</td>
+                <td>{{ patient.phone_number }}</td>
+                <td>{{ patient.email }}</td>
+                <td>{{ patient.medical_history }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    
+        <a href="/add_patient/">Add New Patient</a>
+        <a href="/logout/">Logout</a>
+
+    </body>
+</html>
