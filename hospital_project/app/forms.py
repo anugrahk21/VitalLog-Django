@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Patient
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class PatientForm(ModelForm):
     class Meta:
@@ -33,3 +35,7 @@ class PatientForm(ModelForm):
         
         return cleaned_data
 
+class UsersForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
