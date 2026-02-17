@@ -5,28 +5,45 @@ A lightweight Django web application designed for efficient patient record manag
 ## 🚀 Features
 
 ### Current Functionality
-- **User Authentication**: Custom-built authentication system allowing users to:
-    - **Register**: Create new accounts via the `/add_user/` endpoint.
-    - **Login**: Secure access to the patient management system via `/login/`.
-- **Patient Registration**: An intuitive form interface to add new patients to the system.
-- **Robust Data Validation**: Custom server-side validation rules in `forms.py` ensure data integrity:
-    - **Email**: Enforces specific domain usage (e.g., `@gmail.com`).
-    - **Phone**: Validates that only digits are entered.
-    - **Age**: Restricts input to a realistic range (0-120).
-    - **Name**: Enforces minimum character length.
-- **Error Handling**: Graceful error management and debug logging for form submissions.
+- **Secure Authentication**: Built using Django's robust `contrib.auth` system:
+    - **Register**: Secure user signup with password hashing (`UserCreationForm`).
+    - **Login/Logout**: Session-based authentication (`AuthenticationForm`).
+    - **Access Control**: value-protected views (Dashboard, Add Patient) accessible only to logged-in users.
+- **Patient Dashboard**:
+    - **View Records**: A centralized dashboard displaying a list of all registered patients (`/dashboard/`).
+- **Patient Registration**: An intuitive form interface to add new patients.
+- **Robust Data Validation**: Custom server-side validation rules ensuring data integrity:
+    - **Email**: Enforces `@gmail.com` domain.
+    - **Phone**: Validates digit-only input.
+    - **Age**: Restricts input to 0-120 range.
+    - **Name**: Minimum character length enforcement.
+
+### 🔄 User Flow
+`Login / Signup`  ➡️  `Dashboard (View Patients)`  ➡️  `Add New Patient`  ➡️  `Logout`
+
+### 📂 Project Structure
+```
+VitalLog-Django/
+├── hospital_project/       # Main Project Directory
+│   ├── app/                # Core Application (Models, Forms, Views)
+│   ├── templates/          # HTML Templates (Login, Dashboard, Form)
+│   ├── manage.py           # Django Management Script
+│   └── ...
+└── README.md               # Documentation
+```
 
 ### 🚧 Roadmap (Upcoming Features)
-The project is actively being developed into a full CRUD (Create, Read, Update, Delete) application.
-- **Read**: Dashboard to view a list of all registered patients.
-- **Update**: Interface to edit patient details (e.g., address changes, medical history updates).
+The project is actively being developed into a full CRUD application.
+- **Update**: Interface to edit existing patient details.
 - **Delete**: Functionality to remove discharged or erroneous records.
-- **Search**: Ability to look up patients by ID or name.
+- **Search & Filter**: Ability to look up patients by ID, name, or medical condition.
+- **Detailed View**: dedicated page for comprehensive patient history.
 
 ## 🛠️ Tech Stack
 - **Backend**: Python 3.x, Django 5.x
+- **Authentication**: Django Contrib Auth
 - **Database**: SQLite (default)
-- **Frontend**: HTML5, Standard Django Templates
+- **Frontend**: HTML5, Django Templates
 
 ## 📦 Installation & Setup
 
@@ -57,13 +74,18 @@ The project is actively being developed into a full CRUD (Create, Read, Update, 
    python manage.py migrate
    ```
 
-5. **Start the development server**
+5. **Create a Superuser (Optional - for Admin Panel)**
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+6. **Start the development server**
    ```bash
    python manage.py runserver
    ```
 
-6. **Access the application**
-   Open your browser and visit: `http://127.0.0.1:8000/login/` or `http://127.0.0.1:8000/add_user/`
+7. **Access the application**
+   Open your browser and visit: `http://127.0.0.1:8000/login/`
 
 ---
 *Project under active development.*
