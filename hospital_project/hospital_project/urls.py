@@ -27,4 +27,6 @@ urlpatterns = [
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
     path('dashboard/', dashboard, name='dashboard'),
+
+    # path('path_to_view/', view_name, name='name_of_the_path')
 ]

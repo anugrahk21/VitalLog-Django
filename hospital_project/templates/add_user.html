@@ -11,7 +11,11 @@
     <h1>Add User</h1>
     <form action="" method="post">
         {% csrf_token %}
-        {{form.as_p}}
+
+        <!-- Converts that memory object into HTML tags (<input>) so the user can see them.-->
+        {{form.as_p}} <!-- This will display all the fields of the form -->
+        <!--It looks at your UsersForm class (fields=['username', 'email', ...])
+       and generates the matching HTML for each one. -->
         <button type="submit">Add User</button>
     </form>
     <a href="/login/">Login</a>

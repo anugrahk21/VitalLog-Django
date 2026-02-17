@@ -8,27 +8,31 @@ from django.contrib.auth.forms import AuthenticationForm
 @login_required(login_url='login')
 def add_patient(request):
     if request.method == 'POST':
-        form = PatientForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('add_patient')
+        form = PatientForm(request.POST) # Takes what the user typed and puts it back into the memory object.
+        if form.is_valid(): # Checks if the data is valid
+            form.save() # Takes the data from memory and writes a row in your database auth_user table.
+            return redirect('add_patient') # Redirect to home/add_patient on success
         else:
             print("Form is invalid. Errors:", form.errors)
     else:
-        form = PatientForm()
+        form = PatientForm() # Creates a blank form in memory.
     
+    # Renders the add_patient.html template and passes the form object to it.
+    # The form object is passed to the template in a dictionary with the key 'form'.
+    # This allows the template to access the form object using {{ form }}.
+    # The 'form' variable in the template is used to display the form fields -> {{form.as_p}}
     return render(request, 'add_patient.html', {'form': form})
 
 def add_user(request):
     if request.method == 'POST':
-        form = UsersForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')  # Redirect to login after signing up
+        form = UsersForm(request.POST) # Takes the raw data from the form
+        if form.is_valid(): # Checks if the data is valid
+            form.save() # Takes the data from memory and writes a row in your database auth_user table.
+            return redirect('login')  # Redirect to login after adding the user
         else:
             print("Form is invalid. Errors:", form.errors)
     else:
-        form = UsersForm()
+        form = UsersForm() # Makes a empty form to be filled by the user, this is shown on html page using {{form.as_p}}
     
     return render(request, 'add_user.html', {'form': form})
 
@@ -45,7 +49,7 @@ def user_login(request):
         else:
             print("Form is invalid. Errors:", form.errors)
     else:
-        form = AuthenticationForm()
+        form = AuthenticationForm() # Built-in Django form for authentication
     
     return render(request, 'login.html', {'form': form})
 
