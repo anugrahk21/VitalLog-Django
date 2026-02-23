@@ -1,50 +1,53 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Management System - Input</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
+    <h2>Welcome {{ user.username }} !</h2>
     <h1>Patient Management System: Insert</h1>
 
     <!-- Simple form to input values for the DB -->
-    <form action="{% url 'add_patient' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'add_patient' %}" method="post" enctype="multipart/form-data" onsubmit="alert('Submitted');">
         {% csrf_token %}
 
-        <label for="name">Name:</label><br>
+        <label for="name">Name:</label>
         <input type="text" id="name" name="name" placeholder="Enter patient's name"
-            value="{{ form.name.value|default_if_none:'' }}" required><br><br>
+            value="{{ form.name.value|default_if_none:'' }}" required><br>
 
-        <label for="age">Age:</label><br>
+        <label for="age">Age:</label>
         <input type="number" id="age" name="age" placeholder="Enter patient's age"
-            value="{{ form.age.value|default_if_none:'' }}" required><br><br>
+            value="{{ form.age.value|default_if_none:'' }}" required><br>
 
-        <label for="gender">Gender:</label><br>
+        <label for="gender">Gender:</label>
         <select id="gender" name="gender" required>
             <option value="">Select gender</option>
             <option value="Male" {% if form.gender.value == "Male" %}selected{% endif %}>Male</option>
             <option value="Female" {% if form.gender.value == "Female" %}selected{% endif %}>Female</option>
             <option value="Other" {% if form.gender.value == "Other" %}selected{% endif %}>Other</option>
-        </select><br><br>
+        </select><br>
 
-        <label for="email">Email:</label><br>
+        <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="Enter patient's email"
-            value="{{ form.email.value|default_if_none:'' }}" required><br><br>
+            value="{{ form.email.value|default_if_none:'' }}" required><br>
 
-        <label for="phone_number">Phone Number:</label><br>
+        <label for="phone_number">Phone Number:</label>
         <input type="tel" id="phone_number" name="phone_number" placeholder="Enter patient's phone number"
-            value="{{ form.phone_number.value|default_if_none:'' }}" required><br><br>
+            value="{{ form.phone_number.value|default_if_none:'' }}" required><br>
 
-        <label for="address">Address:</label><br>
+        <label for="address">Address:</label>
         <textarea id="address" name="address" placeholder="Enter patient's address"
-            required>{{ form.address.value|default_if_none:'' }}</textarea><br><br>
+            required>{{ form.address.value|default_if_none:'' }}</textarea><br>
 
-        <label for="medical_history">Medical History:</label><br>
+        <label for="medical_history">Medical History:</label>
         <textarea id="medical_history" name="medical_history" placeholder="Enter patient's medical history"
-            required>{{ form.medical_history.value|default_if_none:'' }}</textarea><br><br>
+            required>{{ form.medical_history.value|default_if_none:'' }}</textarea><br>
 
         <button type="submit">Save Patient</button>
     </form>

@@ -4,6 +4,8 @@ from app.models import Patient
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+#import groups,permissions
+from django.contrib.auth.models import Group, Permission
 
 @login_required(login_url='login')
 def add_patient(request):

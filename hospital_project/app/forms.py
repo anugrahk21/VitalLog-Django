@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Patient
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User # Built in user model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class PatientForm(ModelForm):
@@ -56,4 +56,4 @@ class PatientForm(ModelForm):
 class UsersForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'email', 'password1', 'password2', 'groups']
